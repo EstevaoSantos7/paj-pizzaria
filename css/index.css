@@ -1,0 +1,39 @@
+body{
+
+}
+.container{
+
+}
+.bloco{
+    background-color: red;
+    border-radius: 15px;
+    padding: 10px;
+   margin-left: 28px;
+   margin-right: 10px;
+    
+}
+.bloco h2{
+    color: #ffff;
+    font-size: 34px;
+    font-weight: 700;
+}
+.pizzas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.pizza{
+display: flex;
+flex-direction: column;
+
+}
+.preco{
+    font-weight:900;
+    color: red;
+}
+.pizza img{
+
+    width: 200px;
+    height: 160px;
+    border-radius: 12px;
+}

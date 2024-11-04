@@ -17,16 +17,42 @@ $result = $conn->query($sql);
   <title>Fast Food</title>
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-<?php include "../includes/header.php"?>
+  <?php include "../includes/header.php" ?>
 
   <div class="container">
     <h1>Bem-vindo ao Restaurante Fast Food!</h1>
     <p>Aqui estão os produtos disponíveis:</p>
 
+    <body>
+      <div class="continer">
+        <h1>EXPERIMENTE NOSSAS PIZZAS</h1>
+        <div class="home-pizzas">
+          <div class="bloco">
+            <h2>PIZZAS SALGADAS</h2>
+          </div>
+          <div class="pizzas">
+            <div class="pizza">
+              <p class="titulo-pizza">PIZZA DE BACON ESPECIAL </p>
+              <strong class="preco">R$54,99</strong>
+              <img src="../imgs/produtos/pizza bacon especial.jpg" alt="">
+            </div>
+            <div class="pizza">
+              <p class="titulo-pizza">PIZZA DE BACON ESPECIAL </p>
+              <strong class="preco">R$54,99</strong>
+              <img src="../imgs/produtos/pizza bacon especial.jpg" alt="">
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </body>
     <div class="produtos">
       <?php while ($produto = $result->fetch_assoc()) : ?>
         <div class="produto">
@@ -41,11 +67,11 @@ $result = $conn->query($sql);
               <input type="number" name="quantidade" value="1" min="1">
               <input type="submit" value="Adicionar ao Carrinho">
             </form>
-          <?php else :?>
+          <?php else : ?>
             <a href="../login.php">Adicionar ao Carrinho</a>
-          <?php endif ;?>
+          <?php endif; ?>
         </div>
-      <?php endwhile ;?>
+      <?php endwhile; ?>
     </div>
   </div>
 </body>
