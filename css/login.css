@@ -1,0 +1,132 @@
+body {
+    background: url(../imgs/FUNDO-PIZZA.jpg)no-repeat center center/cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.formulario {
+    margin: 70px 0px;
+    background-color: #ffff;
+    width: 570px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 33px;
+    color: red;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+h4{
+    color: red;
+    font-size:15px ;
+    
+}
+input {
+    width: 350px;
+    border: red solid 1px;
+    border-radius: 32px;
+    padding: 14px;
+    margin: 12px 0px;
+}
+
+input::placeholder {
+    color: #7F7F7F;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+.botao {
+    background-color: #E0E0E0;
+    width: 200px;
+    height: 65px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.robo {
+    margin: 0px 10px;
+    border-radius: 0px;
+    border: solid 0px;
+    width: 50px;
+    height: 50px;
+}
+.botao-continuar{
+    display: flex;
+    justify-content: center;
+   align-items: center  ;
+}
+#continuar {
+    display: flex;
+    justify-content: center;
+   align-items: center ;
+    text-align: center;
+    width: 370px;
+    font-weight: 700;
+    font-size: 25px;
+    color: #ffff;
+    text-decoration: none;
+    padding: 10px;
+    background-color: red;
+    border-radius: 32px;
+    margin: 30px auto;
+    
+}
+
+.cadastrar {
+
+    width: 570px;
+    height: 100px;
+    display: flex;
+   justify-content: space-around;
+   align-items: center;
+    background-color: #E0E0E0;
+    display: flex;
+}
+
+.cadastrar p {
+    display: flex;
+    margin: 15px 0px;
+    width: 140px;
+    font-size: 14px;
+ font-family: Arial, Helvetica, sans-serif;
+}
+
+#cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+    height: 25px;
+    font-weight: 700;
+    font-size: 15px;
+    color: red;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #ffff;
+    border-radius: 32px;
+   
+    border: solid 1px red;
+
+}

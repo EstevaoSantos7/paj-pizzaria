@@ -1,0 +1,98 @@
+body {
+    background: url(../imgs/FUNDO-PIZZA.jpg)no-repeat center center/cover;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.formulario {
+    margin: 70px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffff;
+    width: 380px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+h1 {
+    font-size: 36px;
+    color: red;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+h5 {
+    margin: 15px 0px;
+    color: red;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+input {
+    width: 250px;
+    border: red solid 1px;
+    border-radius: 32px;
+    padding: 8px;
+    margin: 6px 0px;
+}
+
+input::placeholder {
+    color: #7F7F7F;
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+#cadastrar {
+    text-align: center;
+    width: 250px;
+    font-weight: 700;
+    font-size: 22px;
+    color: #ffff;
+    text-decoration: none;
+    padding: 8px;
+    background-color: red;
+    border-radius: 32px;
+    margin: 18px 0px;
+
+}
+
+.ir-login {
+    width: 380px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E0E0E0;
+}
+
+#login {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 170px;
+    height: 25px;
+    font-weight: 600;
+    font-size: 20px;
+    color: red;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #ffff;
+    border-radius: 32px;
+    margin: 18px 0px;
+    border: solid 1px red;
+
+}
