@@ -4,7 +4,6 @@ include '../config/conexao.php';
 
 $sql = "SELECT * FROM produtos WHERE status = 'ativo'";
 $result = $conn->query($sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +17,7 @@ $result = $conn->query($sql);
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
 </head>
 
 <body>
@@ -28,35 +28,43 @@ $result = $conn->query($sql);
     <h1>Bem-vindo ao Restaurante Fast Food!</h1>
     <p>Aqui estão os produtos disponíveis:</p>
 
-    <body>
-      <div class="continer">
-        <h1>EXPERIMENTE NOSSAS PIZZAS</h1>
-        <div class="home-pizzas">
-          <div class="bloco">
-            <h2>PIZZAS SALGADAS</h2>
-          </div>
-          <div class="pizzas">
-            <div class="pizza">
-              <p class="titulo-pizza">PIZZA DE BACON ESPECIAL </p>
-              <strong class="preco">R$54,99</strong>
-              <img src="../imgs/produtos/pizza bacon especial.jpg" alt="">
+    <!-- Seção para exibir todas as pizzas -->
+    <div class="continer">
+      <h1>EXPERIMENTE NOSSAS PIZZAS</h1>
+
+      <!-- Início das pizzas dinâmicas -->
+      <div class="pizzas">
+        <?php 
+        // Loop para exibir todas as pizzas
+        while ($produto = $result->fetch_assoc()) : ?>
+          <div class="pizza">
+            <div class="descricao-pizza">
+              <p class="titulo-pizza"><?php echo $produto['nome']; ?></p>
+              <a href="adicionar_ao_carrinho.php?id=<?php echo $produto['id']; ?>" class="adicionar">ADICIONAR AO CARRINHO</a>
+              <p class="preco-cima">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
             </div>
-            <div class="pizza">
-              <p class="titulo-pizza">PIZZA DE BACON ESPECIAL </p>
-              <strong class="preco">R$54,99</strong>
-              <img src="../imgs/produtos/pizza bacon especial.jpg" alt="">
+            <div class="baixo">
+              <h1 class="nome-pizza"><?php echo $produto['nome']; ?></h1>
+              <div class="back">
+                <strong class="preco-baixo">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></strong>
+                <img src="../imgs/produtos/<?php echo $produto['imagem']; ?>" alt="<?php echo $produto['nome']; ?>" class="piza">
+              </div>
             </div>
           </div>
-        </div>
-
-
-
+        <?php endwhile; ?>
       </div>
-    </body>
+    </div>
+
+    <!-- Mostrar as pizzas em um formato de listagem geral -->
     <div class="produtos">
-      <?php while ($produto = $result->fetch_assoc()) : ?>
+      <?php 
+      // Reiniciar o ponteiro do resultado para percorrer novamente
+      $result->data_seek(0); // Reseta o ponteiro do resultado
+
+      // Loop para exibir todos os produtos
+      while ($produto = $result->fetch_assoc()) : ?>
         <div class="produto">
-          <img src="https://placehold.co/400x400" alt="<?php echo $produto['nome']; ?>" style="width: 200px; height: auto;">
+          <img src="../imgs/produtos/<?php echo $produto['imagem']; ?>" alt="<?php echo $produto['nome']; ?>" style="width: 200px; height: auto;">
           <h3><?php echo $produto['nome']; ?></h3>
           <p><?php echo $produto['descricao']; ?></p>
           <p>R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
@@ -74,6 +82,7 @@ $result = $conn->query($sql);
       <?php endwhile; ?>
     </div>
   </div>
+
 </body>
 
 </html>
