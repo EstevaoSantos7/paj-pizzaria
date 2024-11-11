@@ -43,7 +43,7 @@ input {
     width: 250px;
     border: red solid 1px;
     border-radius: 32px;
-    padding: 8px;
+    padding: 12px;
     margin: 6px 0px;
 }
 
@@ -61,10 +61,11 @@ input::placeholder {
     font-size: 22px;
     color: #ffff;
     text-decoration: none;
-    padding: 8px;
+    padding: 10px;
     background-color: red;
     border-radius: 32px;
     margin: 18px 0px;
+    border: 0;
 
 }
 
@@ -93,6 +94,6 @@ input::placeholder {
     background-color: #ffff;
     border-radius: 32px;
     margin: 18px 0px;
-    border: solid 1px red;
+    border: solid 2px red;
 
 }

@@ -4,33 +4,33 @@ include 'config/conexao.php';
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+  $email = $_POST['email'];
+  $senha = $_POST['senha'];
 
-    // Consulta para verificar o usuário
-    $sql = "SELECT * FROM usuarios WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+  // Consulta para verificar o usuário
+  $sql = "SELECT * FROM usuarios WHERE email = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("s", $email);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
-    // Verifica se o usuário foi encontrado
-    if ($result->num_rows > 0) {
-        $usuario = $result->fetch_assoc();
-        // Verifica a senha
-        if (password_verify($senha, $usuario['senha'])) {
-            // Define as variáveis de sessão
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['role'] = $usuario['role'];
+  // Verifica se o usuário foi encontrado
+  if ($result->num_rows > 0) {
+    $usuario = $result->fetch_assoc();
+    // Verifica a senha
+    if (password_verify($senha, $usuario['senha'])) {
+      // Define as variáveis de sessão
+      $_SESSION['usuario_id'] = $usuario['id'];
+      $_SESSION['role'] = $usuario['role'];
 
-            header('Location: /index.php');
-            exit;
-        } else {
-            $erro = "Senha incorreta!";
-        }
+      header('Location: /index.php');
+      exit;
     } else {
-        $erro = "Usuário não encontrado!";
+      $erro = "Senha incorreta!";
     }
+  } else {
+    $erro = "Usuário não encontrado!";
+  }
 }
 ?>
 
@@ -48,13 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-  <?php include 'includes/header.php'; ?>
-
+ 
   <div class="container">
     <?php if (isset($erro)): ?>
       <p style="color: red;"><?= $erro; ?></p>
     <?php endif; ?>
-    
+
     <!-- Formulário de Login -->
     <form class="formulario" action="login.php" method="POST">
       <div class="interna">
@@ -68,12 +67,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="checkbox" value="" class="robo">
         <p>Não sou um robô</p>
       </div>
-    
+
       <!-- O botão 'Entrar' agora está dentro do formulário -->
       <div class="botao-continuar">
-        <button type="submit" id="continuar">Entrar</button> <!-- Botão de submit para o formulário -->
+        <button type="submit" id="continuar">ENTRAR</button> <!-- Botão de submit para o formulário -->
       </div>
-      
+
       <div class="cadastrar">
         <p>Ainda não tem um cadastro? Clique no botão ao lado. É rápido e fácil.</p>
         <a href="cadastro.php" id="cadastro">QUERO ME CADASTRAR</a>

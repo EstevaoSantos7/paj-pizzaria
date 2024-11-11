@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-  <?php include 'includes/header.php'; ?>
+  
   <div class="container">
     <?php if (isset($erro)): ?>
       <p style="color: red;"><?= $erro; ?></p>
@@ -73,11 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="number" name="numero" placeholder="Número" value="<?= $numero ?? ''; ?>" required>
         <input type="text" name="complemento" placeholder="Complemento" value="<?= $complemento ?? ''; ?>">
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit" id="cadastrar">CADASTRAR</button>
       </form>
 
       <div class="ir-login">
-        <a href="./login.php" id="login">Já tem uma conta? Faça Login</a>
+        <a href="./login.php" id="login"> FAZER LOGIN</a>
       </div>
     </div>
 
