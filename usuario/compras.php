@@ -1,3 +1,33 @@
+<?php
+session_start();
+include '../config/conexao.php';
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['usuario_id'])) {
+  header('Location: ../login.php');
+  exit;
+}
+
+// Obtém os pedidos do usuário logado
+$usuario_id = $_SESSION['usuario_id'];
+$sql = "SELECT * FROM pedidos WHERE usuario_id = ? ORDER BY created_at DESC"; // Usei `created_at` para ordem correta, caso seja essa a coluna que você deseja
+
+$stmt = $conn->prepare($sql);
+if ($stmt === false) {
+    // Verifica se a preparação da query falhou
+    die('Erro ao preparar a query: ' . $conn->error);
+}
+
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Verifica se a consulta retornou resultados
+if ($result === false) {
+    die('Erro ao executar a query: ' . $stmt->error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,41 +37,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Minhas Compras - Fast Food</title>
   <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="./css/reset.css">
 </head>
 
 <body>
+  <?php include '../includes/header.php'; ?>
 
   <div class="container">
     <h1>Minhas Compras</h1>
 
-    <div class="lista-compras">
-      <div class="compra-item">
-        <div class="compra-info">
-          <h3>Pedido #123</h3>
-          <p><strong>Data do Pedido:</strong> 21/10/2024 14:30</p>
-          <p><strong>Total:</strong> R$ 89,90</p>
-          <p><strong>Status:</strong> Concluído</p>
-        </div>
-        <div class="compra-detalhes">
-          <a href="detalhes-venda.php?id=123" class="btn-detalhes">Ver Detalhes</a>
-        </div>
+    <?php if ($result->num_rows > 0): ?>
+      <div class="lista-compras">
+        <?php while ($pedido = $result->fetch_assoc()): ?>
+          <div class="compra-item">
+            <div class="compra-info">
+              <h3>Pedido #<?= htmlspecialchars($pedido['id'], ENT_QUOTES, 'UTF-8'); ?></h3>
+              <p><strong>Data do Pedido:</strong> <?= date('d/m/Y H:i', strtotime($pedido['created_at'])); ?></p>
+              <p><strong>Total:</strong> R$ <?= number_format($pedido['total'], 2, ',', '.'); ?></p>
+              <p><strong>Status:</strong> <?= ucfirst(htmlspecialchars($pedido['status'], ENT_QUOTES, 'UTF-8')); ?></p>
+            </div>
+            <div class="compra-detalhes">
+              <a href="detalhes-pedido.php?id=<?= htmlspecialchars($pedido['id'], ENT_QUOTES, 'UTF-8'); ?>" class="btn-detalhes">Ver Detalhes</a>
+            </div>
+          </div>
+        <?php endwhile; ?>
       </div>
-
-      <div class="compra-item">
-        <div class="compra-info">
-          <h3>Pedido #124</h3>
-          <p><strong>Data do Pedido:</strong> 20/10/2024 12:45</p>
-          <p><strong>Total:</strong> R$ 59,90</p>
-          <p><strong>Status:</strong> Em andamento</p>
-        </div>
-        <div class="compra-detalhes">
-          <a href="detalhes_venda.php?id=124" class="btn-detalhes">Ver Detalhes</a>
-        </div>
-      </div>
-    </div>
-
+    <?php else: ?>
+      <p>Você ainda não fez nenhuma compra.</p>
+    <?php endif; ?>
   </div>
+
+  <?php include '../includes/footer.php'; ?>
 
 </body>
 
