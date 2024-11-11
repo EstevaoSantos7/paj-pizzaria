@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+<?php include '../includes/header.php'; ?>
   <div class="container">
     <h1>Produtos</h1>
 

@@ -1,0 +1,114 @@
+body {
+    background: url(../imgs/FUNDO-PIZZA.jpg)no-repeat center center/cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pai {
+    margin-top: 115px;
+    margin-bottom: 110px;
+    background-color: #ffffff;
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 800px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    border-radius: 15px;
+
+}
+
+.titulo {
+    font-size: 36px;
+    color: red;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+form {
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+label {
+    margin-top: 12px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 600;
+   
+ 
+
+}
+
+input {
+    margin-top: 5px;
+    border: 2px solid red;
+    border-radius: 21px;
+    padding: 13px;
+    width: 350px;   
+}
+
+
+#descricao {
+    border: 2px solid red;
+    border-radius: 15px;
+   
+}
+
+#imagem {
+
+    cursor: pointer;
+}
+.cadastrar{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+#cadastrar {
+    text-align: center;
+    width: 250px;
+    font-weight: 700;
+    font-size: 22px;
+    color: #ffff;
+    text-decoration: none;
+    padding: 10px;
+    background-color: red;
+    border-radius: 32px;
+    margin: 18px 0px;
+    border: 0;
+    cursor: pointer;
+
+}
+
+.voltar {
+    display: flex;
+    justify-content: start;
+}
+
+#voltar {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 170px;
+    height: 25px;
+    font-weight: 600;
+    font-size: 20px;
+    color: red;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #ffff;
+    border-radius: 32px;
+    margin: 18px 0px;
+    border: solid 2px red;
+
+}
