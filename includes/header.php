@@ -2,7 +2,9 @@
     <section class="cabecario">
         <div class="cabecario1">
     <div class="logo">
+        <a href="index.php">
     <img src="/imgs/2.png" alt="">
+    </a>
     </div>
     <div class="icones">
         <a href="/usuario/carrinho.php"><img src="/imgs/carrinho-de-compras.png" alt=""></a>
