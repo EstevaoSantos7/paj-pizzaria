@@ -7,8 +7,8 @@
     </a>
     </div>
     <div class="icones">
-        <a href="/usuario/carrinho.php"><img src="/imgs/carrinho-de-compras.png" alt=""></a>
-        <a href="/perfil.php"><img src="/imgs/perfil-de-usuario.png" alt=""></a>
+        <a href="/usuario/carrinho.php"><img src="" alt=""></a>
+        <a href="/perfil.php"><img src="" alt=""></a>
     </div>
     </div>
     <nav>
