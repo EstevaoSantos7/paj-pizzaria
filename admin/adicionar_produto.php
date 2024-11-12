@@ -52,16 +52,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Adicionar Produto - Fast Food</title>
+  <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/produto.css">
-
+  <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
-
 <body>
-  <?php include '../includes/header.php'; ?>
+
   <div class="container">
-    <h1>Cadastrar Produto</h1>
+
 
 
     <!-- Exibe mensagens de sucesso ou erro -->
@@ -73,19 +73,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <!-- Formulário de cadastro de produto -->
-    <form action="adicionar_produto.php" method="POST" enctype="multipart/form-data">
-
-
-      <label for="nome">Nome do Produto:</label>
-      <input type="text" name="nome" id="nome" required>
-      <label for="descricao">Descrição:</label>
-      <textarea name="descricao" id="descricao" required></textarea>
-      <label for="preco">Preço:</label>
-      <input type="number" step="0.01" name="preco" id="preco" required>
-      <label for="imagem">Imagem do Produto:</label>
-      <input type="file" name="imagem" id="imagem" accept="image/*" required>
-      <button type="submit">Cadastrar Produto</button>
-    </form>
+    <div class="pai">
+      <h1 class="titulo">Cadastrar Produto</h1>
+      <form action="adicionar_produto.php" method="POST" enctype="multipart/form-data">
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" name="nome" id="nome" required>
+        <label for="descricao">Descrição:</label>
+        <textarea name="descricao" id="descricao" required></textarea>
+        <label for="preco">Preço:</label>
+        <input type="number" step="0.01" name="preco" id="preco" required>
+        <label for="imagem">Imagem do Produto:</label>
+        <input type="file" name="imagem" id="imagem" accept="image/*" required>
+        <div class="cadastrar">
+          <button type="submit" id="cadastrar">Cadastrar Produto</button>
+        </div>
+      </form>
+      <div class="voltar">
+        <a href="../admin/index.php" id="voltar">VOLTAR</a>
+      </div>
+    </div>
   </div>
 
 
@@ -96,4 +102,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 </html>
-
