@@ -53,11 +53,30 @@ $result = $conn->query($sql);
           <p>Preço: R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></p>
           <p>Status: <?= ucfirst($produto['status']); ?></p>
 
+<<<<<<< HEAD
           <!-- Botões de edição e remoção para admin -->
           <a href="editar_produto.php?id=<?= $produto['id']; ?>">Editar</a> |
           <a href="index.php?remover_id=<?= $produto['id']; ?>" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
         </div>
       <?php endwhile; ?>
+=======
+        <a href="editar_produto.php?id=1">Editar</a> |
+        <a href="index.php?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
+      </div>
+
+
+      <div class="produto">
+        <img src="../imgs/produtos/exemplo2.jpg" alt="Produto Exemplo 2" style="width: 200px; height: auto;">
+        <h3>Produto Exemplo 2</h3>
+        <p>Descrição: Descrição do produto exemplo 2</p>
+        <p>Preço: R$ 49,90</p>
+        <p>Status: Inativo</p>
+
+
+        <a href="editar_produto.php?id=1">Editar</a> |
+        <a href="index.php?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
+      </div>
+>>>>>>> 302feb7c651b3765d576b05d85667bf95dfd3aba
     </div>
   </div>
   <?php include '../includes/footer.php'; ?>

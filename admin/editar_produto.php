@@ -91,6 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Editar Produto - Fast Food</title>
   <link rel="stylesheet" href="../css/editar-produto.css">
+<<<<<<< HEAD
+=======
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+>>>>>>> 302feb7c651b3765d576b05d85667bf95dfd3aba
 
 
 </head>
@@ -99,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <?php include '../includes/header.php'; ?>
   <div class="container">
+<<<<<<< HEAD
     <h1>Editar Produto</h1>
 
 
@@ -136,6 +142,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <option value="ativo" <?= $produto['status'] == 'ativo' ? 'selected' : ''; ?>>Ativo</option>
           <option value="inativo" <?= $produto['status'] == 'inativo' ? 'selected' : ''; ?>>Inativo</option>
         </select>
+=======
+
+
+
+    <!-- Exibe mensagens de sucesso ou erro -->
+    <?php if (isset($msg)): ?>
+      <p style="color: green;"><?= $msg; ?></p>
+    <?php elseif (isset($erro)): ?>
+      <p style="color: red;"><?= $erro; ?></p>
+    <?php endif; ?>
+
+
+    <div class="pai">
+      <h1 class="titulo">Editar Produto</h1>
+      <!-- Formulário de edição de produto -->
+      <form action="editar_produto.php?id=<?= $produto['id']; ?>" method="POST" enctype="multipart/form-data">
+
+        <div class="formulario-editar">
+          <label for="nome">Nome do Produto:</label>
+          <input type="text" name="nome" id="nome" value="<?= $produto['nome']; ?>" required>
+
+
+          <label for="descricao">Descrição:</label>
+          <textarea name="descricao" id="descricao" required><?= $produto['descricao']; ?></textarea>
+
+
+          <label for="preco">Preço:</label>
+          <input type="number" step="0.01" name="preco" id="preco" value="<?= $produto['preco']; ?>" required>
+
+
+          <label for="status">Status do Produto:</label>
+          <select name="status" id="status" required>
+            <option value="ativo" <?= $produto['status'] == 'ativo' ? 'selected' : ''; ?>>Ativo</option>
+            <option value="inativo" <?= $produto['status'] == 'inativo' ? 'selected' : ''; ?>>Inativo</option>
+          </select>
+        </div>
+
+
+        <div class="imagem-editar">
+          <label for="imagem">Imagem do Produto (deixe vazio para manter a atual):</label>
+          <input type="file" name="imagem" id="imagem" accept="image/*">
+          <p>Imagem atual:</p>
+          <img src="../imgs/produtos/<?= $produto['imagem']; ?>" alt="<?= $produto['nome']; ?>" style="width: 150px;">
+        </div>
+
+        <div class="atualizar">
+          <input type="submit" value="Atualizar Produto" id="atualizar">
+        </div>
+      </form>
+      <div class="voltar">
+        <a href="../admin/index.php" id="voltar">VOLTAR</a>
+>>>>>>> 302feb7c651b3765d576b05d85667bf95dfd3aba
       </div>
 
 
@@ -158,5 +216,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 
+<<<<<<< HEAD
 </html>
 
+=======
+</html>
+>>>>>>> 302feb7c651b3765d576b05d85667bf95dfd3aba
