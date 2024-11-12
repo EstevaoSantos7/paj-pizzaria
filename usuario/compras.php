@@ -42,7 +42,6 @@ if ($result === false) {
 </head>
 
 <body>
-      <?php include '../includes/header.php'; ?>
 
   <div class="container">
     <h1>Minhas Compras</h1>
@@ -72,7 +71,9 @@ if ($result === false) {
       <p id="nenhuma">Você ainda não fez nenhuma compra.</p>
     <?php endif; ?>
   </div>
-
+  <section class="voltar">
+    <a href="index.php">Voltar</a>
+  </section>
   <?php include '../includes/footer.php'; ?>
 
 </body>
