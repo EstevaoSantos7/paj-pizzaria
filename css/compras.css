@@ -1,0 +1,84 @@
+.container h1{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: red;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+#nenhuma{
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    text-align: center;
+}
+.compra-item{
+    border: solid rgba(0, 0, 0, 0.5) 4px;
+    border-radius: 20px;
+    width: 24%;
+    height: 430px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 25px;
+}
+.lista-compras{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.container{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.compra-info{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+.titulo-pedido{
+    font-size: 28px;
+    margin-left: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.pedido-text{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+}
+strong{
+    font-weight: 700;
+}
+.compra-detalhes{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 35px;
+}
+#ver-detalhes{
+    background-color: #ffffff;
+    color: #ff0000;
+    border-radius: 32px;
+    border: solid #ff0000 1px;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px;
+    padding-right: 60px;
+    padding-left: 60px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#ver-detalhes:hover{
+    transition: ease-in-out 0.3s;
+    background-color: #ff0000;
+    color: #ffffff;
+}
