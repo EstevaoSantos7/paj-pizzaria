@@ -1,74 +1,112 @@
+<?php
+session_start();
+include '../config/conexao.php';
+
+
+// Verifica se o usuário é admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+  header('Location: ../login.php');
+  exit;
+}
+
+
+// Atualiza o status do pedido se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pedido_id']) && isset($_POST['status'])) {
+  $pedido_id = $_POST['pedido_id'];
+  $status = $_POST['status'];
+
+
+  // Atualiza o status do pedido
+  $sql_update = "UPDATE pedidos SET status = ? WHERE id = ?";
+  $stmt_update = $conn->prepare($sql_update);
+  $stmt_update->bind_param("si", $status, $pedido_id);
+
+
+  if ($stmt_update->execute()) {
+    $msg = "Status do pedido #{$pedido_id} atualizado com sucesso!";
+  } else {
+    $erro = "Erro ao atualizar o status do pedido.";
+  }
+}
+
+
+// Obtém todos os pedidos
+$sql = "SELECT p.id, p.usuario_id, p.total, p.status, p.data_pedido, u.nome
+        FROM pedidos p
+        JOIN usuarios u ON p.usuario_id = u.id
+        ORDER BY p.data_pedido DESC";
+$result = $conn->query($sql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Vendas - Fast Food</title>
-  <link rel="stylesheet" href="../css/vendas.css">
-  <link rel="stylesheet" href="./css/reset.css">
+  <title>Pedidos - Fast Food</title>
+  <link rel="stylesheet" href="../css/pedidos.css">
+
+
 </head>
 
+
 <body>
-
+  <?php include '../includes/header.php'; ?>
   <div class="container">
-    <h1>Gerenciar Vendas</h1>
+    <h1>Gerenciar Pedidos</h1>
 
-    <div class="lista-vendas">
-      <div class="pedido-item">
-        <div class="pedido-info">
-          <h3>Pedido #123 - João Silva</h3>
-          <p><strong>Data do Pedido:</strong> 21/10/2024 14:30</p>
-          <p><strong>Total:</strong> R$ 89,90</p>
-          <p><strong>Status:</strong> Pendente</p>
-        </div>
-        <div class="pedido-acoes">
-          <form action="vendas.php" method="POST">
-            <input type="hidden" name="pedido_id" value="123">
-            <label for="status">Alterar Status:</label>
-            <select name="status" required>
-              <option value="pendente" selected>Pendente</option>
-              <option value="em-andamento">Em andamento</option>
-              <option value="saiu-para-entrega">Saiu para entrega</option>
-              <option value="entregue">Entregue</option>
-              <option value="cancelado">Cancelado</option>
-            </select>
-            <input type="submit" value="Atualizar Status">
-          </form>
-          <a href="detalhes_venda.php?id=123" class="btn-detalhes">Ver Detalhes</a>
-        </div>
+
+    <!-- Exibe mensagem de sucesso ou erro -->
+    <?php if (isset($msg)): ?>
+      <p style="color: green;"><?= $msg; ?></p>
+    <?php elseif (isset($erro)): ?>
+      <p style="color: red;"><?= $erro; ?></p>
+    <?php endif; ?>
+
+
+    <?php if ($result->num_rows > 0): ?>
+      <div class="lista-pedidos">
+        <?php while ($pedido = $result->fetch_assoc()): ?>
+          <div class="pedido-item">
+            <div class="pedido-info">
+              <h3>Pedido #<?= $pedido['id']; ?> - <?= $pedido['nome']; ?></h3>
+              <p><strong>Data do Pedido:</strong> <?= date('d/m/Y H:i', strtotime($pedido['data_pedido'])); ?></p>
+              <p><strong>Total:</strong> R$ <?= number_format($pedido['total'], 2, ',', '.'); ?></p>
+              <p><strong>Status:</strong> <?= ucfirst($pedido['status']); ?></p>
+            </div>
+            <div class="pedido-acoes">
+              <!-- Formulário para atualizar o status do pedido -->
+              <form action="pedidos.php" method="POST">
+                <input type="hidden" name="pedido_id" value="<?= $pedido['id']; ?>">
+                <label for="status">Alterar Status:</label>
+                <select name="status" required>
+                  <option value="pendente" <?= $pedido['status'] == 'pendente' ? 'selected' : ''; ?>>Pendente</option>
+                  <option value="em-andamento" <?= $pedido['status'] == 'em-andamento' ? 'selected' : ''; ?>>Em andamento</option>
+                  <option value="saiu-para-entrega" <?= $pedido['status'] == 'saiu-para-entrega' ? 'selected' : ''; ?>>Saiu para entrega</option>
+                  <option value="entregue" <?= $pedido['status'] == 'entregue' ? 'selected' : ''; ?>>Entregue</option>
+                  <option value="cancelado" <?= $pedido['status'] == 'cancelado' ? 'selected' : ''; ?>>Cancelado</option>
+                </select>
+                <input type="submit" value="Atualizar Status">
+              </form>
+              <a href="detalhes-pedido.php?id=<?= $pedido['id']; ?>" class="btn-detalhes">Ver Detalhes</a>
+            </div>
+          </div>
+        <?php endwhile; ?>
       </div>
-
-
-      <div class="pedido-item">
-        <div class="pedido-info">
-          <h3>Pedido #124 - Maria Souza</h3>
-          <p><strong>Data do Pedido:</strong> 20/10/2024 12:45</p>
-          <p><strong>Total:</strong> R$ 59,90</p>
-          <p><strong>Status:</strong> Em andamento</p>
-        </div>
-        <div class="pedido-acoes">
-          <form action="vendas.php" method="POST">
-            <input type="hidden" name="pedido_id" value="124">
-            <label for="status">Alterar Status:</label>
-            <select name="status" required>
-              <option value="pendente">Pendente</option>
-              <option value="em-andamento" selected>Em andamento</option>
-              <option value="saiu-para-entrega">Saiu para entrega</option>
-              <option value="entregue">Entregue</option>
-              <option value="cancelado">Cancelado</option>
-            </select>
-            <input type="submit" value="Atualizar Status">
-          </form>
-          <a href="detalhes_venda.php?id=124" class="btn-detalhes">Ver Detalhes</a>
-        </div>
-      </div>
-    </div>
-
+    <?php else: ?>
+      <p>Nenhum pedido foi encontrado.</p>
+    <?php endif; ?>
   </div>
 
 
+  <?php include '../includes/footer.php'; ?>
+
+
 </body>
+
 
 </html>

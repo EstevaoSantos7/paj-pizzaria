@@ -23,8 +23,8 @@
         <p>Preço: R$ 29,90</p>
         <p>Status: Ativo</p>
 
-        <a href="editar-produto.html?id=1">Editar</a> |
-        <a href="index.html?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
+        <a href="editar_produto.php?id=1">Editar</a> |
+        <a href="index.php?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
       </div>
 
 
@@ -36,8 +36,8 @@
         <p>Status: Inativo</p>
 
 
-        <a href="editar-produto.html?id=2">Editar</a> |
-        <a href="index.html?remover_id=2" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
+        <a href="editar_produto.php?id=1">Editar</a> |
+        <a href="index.php?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
       </div>
     </div>
   </div>
