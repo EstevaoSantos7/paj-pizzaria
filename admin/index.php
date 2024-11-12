@@ -1,3 +1,32 @@
+<?php
+session_start();
+include '../config/conexao.php';
+
+// Verifica se o usuário é admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+  header('Location: ../login.php');
+  exit;
+}
+
+// Deletar produto
+if (isset($_GET['remover_id'])) {
+  $remover_id = $_GET['remover_id'];
+  $delete_sql = "DELETE FROM produtos WHERE id = ?";
+  $stmt = $conn->prepare($delete_sql);
+  $stmt->bind_param("i", $remover_id);
+
+  if ($stmt->execute()) {
+    echo "<script>alert('Produto removido com sucesso!'); window.location.href = 'index.php';</script>";
+  } else {
+    echo "<script>alert('Erro ao remover o produto!');</script>";
+  }
+  $stmt->close();
+}
+
+$sql = "SELECT * FROM produtos";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,42 +36,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Painel Admin - Fast Food</title>
   <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="../css/header.css">
 </head>
 
 <body>
-<?php include '../includes/header.php'; ?>
+  <?php include '../includes/header.php'; ?>
   <div class="container">
     <h1>Produtos</h1>
 
     <div class="produtos">
-      <div class="produto">
-        <img src="../imgs/produtos/exemplo1.jpg" alt="Produto Exemplo 1" style="width: 200px; height: auto;">
-        <h3>Produto Exemplo 1</h3>
-        <p>Descrição: Descrição do produto exemplo 1</p>
-        <p>Preço: R$ 29,90</p>
-        <p>Status: Ativo</p>
+      <?php while ($produto = $result->fetch_assoc()) : ?>
+        <div class="produto">
+          <img src="../imgs/produtos/<?= $produto['imagem']; ?>" alt="<?= $produto['nome']; ?>">
+          <h3><?= $produto['nome']; ?></h3>
+          <p>Descrição: <?= $produto['descricao']; ?></p>
+          <p>Preço: R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></p>
+          <p>Status: <?= ucfirst($produto['status']); ?></p>
 
-        <a href="editar-produto.html?id=1">Editar</a> |
-        <a href="index.html?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
-      </div>
-
-
-      <div class="produto">
-        <img src="../imgs/produtos/exemplo2.jpg" alt="Produto Exemplo 2" style="width: 200px; height: auto;">
-        <h3>Produto Exemplo 2</h3>
-        <p>Descrição: Descrição do produto exemplo 2</p>
-        <p>Preço: R$ 49,90</p>
-        <p>Status: Inativo</p>
-
-
-        <a href="editar-produto.html?id=2">Editar</a> |
-        <a href="index.html?remover_id=2" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
-      </div>
+          <!-- Botões de edição e remoção para admin -->
+          <a href="editar_produto.php?id=<?= $produto['id']; ?>">Editar</a> |
+          <a href="index.php?remover_id=<?= $produto['id']; ?>" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
+        </div>
+      <?php endwhile; ?>
     </div>
   </div>
-
+  <?php include '../includes/footer.php'; ?>
 
 </body>
 
 </html>
+
