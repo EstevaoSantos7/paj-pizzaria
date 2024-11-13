@@ -132,26 +132,26 @@ while ($item = $result->fetch_assoc()) {
 <body>
   <div class="container">
     <div class="carrinho">
-      <h1>Meu Carrinho</h1>
+      <h1 class="titulo">Meu Carrinho</h1>
       <?php if (count($items) > 0): ?>
         <?php foreach ($items as $item): ?>
           <div class="item-carrinho">
             <div class="detalhes-produto">
-            <div class="container-nome">
-              <h3><?= $item['nome']; ?></h3>
-              <form action="carrinho.php" method="POST">
-                <input type="hidden" name="produto_id" value="<?= $item['produto_id']; ?>">
-                <button type="submit" name="remover" id="remover">Remover</button>
+              <div class="container-nome">
+                <h3><?= $item['nome']; ?></h3>
+                <form action="carrinho.php" method="POST">
+                  <input type="hidden" name="produto_id" value="<?= $item['produto_id']; ?>">
+                  <button type="submit" name="remover" id="remover">Remover</button>
               </div>
-            </form>
+              </form>
 
               <form action="carrinho.php" method="POST" class="form-quantidade">
                 <input type="hidden" name="produto_id" value="<?= $item['produto_id']; ?>">
                 <!-- Botão de diminuir quantidade -->
-                <button type="submit" name="decrementar" class="quantidade-btn" >-</button>
+                <button type="submit" name="decrementar" class="quantidade-btn">-</button>
 
                 <!-- Exibe a quantidade do produto -->
-                <input type="number" name="quantidade" value="<?= $item['quantidade']; ?>" min="1" class="quantidade-input" style="width: 50px;" required>
+                <input type="number" name="quantidade" value="<?= $item['quantidade']; ?>" min="1" class="quantidade-input" required>
 
                 <!-- Botão de aumentar quantidade -->
                 <button type="submit" name="incrementar" class="quantidade-btn">+</button>
@@ -161,23 +161,23 @@ while ($item = $result->fetch_assoc()) {
             <!-- Botões para aumentar e diminuir a quantidade -->
 
             <!-- Formulário para remover o item -->
-           
+
           </div>
         <?php endforeach; ?>
         <div class="total-carrinho">
           <h2 id="total">Total: R$ <?= number_format($total, 2, ',', '.'); ?></h2>
         </div>
         <!-- Formulário para escolher o método de pagamento e finalizar o pedido -->
-        
-          <form action="carrinho.php" method="POST">
-          <div  class="pagamento">
+
+        <form action="carrinho.php" method="POST">
+          <div class="pagamento">
             <h3 id="metodo">Método de Pagamento</h3>
             <select name="metodo_pagamento" required class="opcoes">
               <option value="cartao_credito">Cartão de Crédito</option>
               <option value="cartao_debito">Cartão de Débito</option>
               <option value="pix">PIX</option>
             </select>
-        </div>
+          </div>
           <div class="finalizar">
             <button type="submit" name="finalizar" id="finaliza">Finalizar Pedido</button>
           </div>

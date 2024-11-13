@@ -125,10 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label for="descricao">Descrição:</label>
           <textarea name="descricao" id="descricao" required><?= $produto['descricao']; ?></textarea>
 
-
           <label for="preco">Preço:</label>
           <input type="number" step="0.01" name="preco" id="preco" value="<?= $produto['preco']; ?>" required>
-
 
           <label for="status">Status do Produto:</label>
           <select name="status" id="status" required>

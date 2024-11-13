@@ -1,6 +1,6 @@
 body {
     background: url(../imgs/FUNDO-PIZZA.jpg)no-repeat center center/cover;
-   
+
 }
 
 .container {
@@ -33,59 +33,75 @@ body {
     margin-bottom: 10px;
 }
 
-.detalhes-produto{
-display: flex;
-justify-content: space-around;
-align-items: center;
+.detalhes-produto {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
 }
-.detalhes-produto h3{
-font-size: 26px;
-font-weight: 500;
+
+.detalhes-produto h3 {
+    font-size: 26px;
+    font-weight: 500;
 
 }
-.detalhes-produto p{
-font-size: 24px;
-font-weight: 800;
-margin: 7px 0px;
+
+.detalhes-produto p {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 7px 0px;
 }
 
 .total-carrinho {
     display: flex;
-justify-content: end;
-margin-right: 25px;
+    justify-content: end;
+    margin-right: 25px;
 }
 
 #total {
-font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 36px;
     color: red;
     font-weight: 700;
     margin-top: 25px;
     margin-bottom: 10px;
 }
-.container-nome{
-   margin: 12px 0px;
+
+.container-nome {
+    margin: 12px 0px;
 }
+
 #remover {
-    
+
     border: 2px solid red;
     border-radius: 5px;
     background-color: red;
     color: #fff;
     font-size: 18px;
-    
     cursor: pointer;
+    
 }
- 
-.quantidade-btn{
-    color: red;
-background-color: #fff;
-border: 1px solid red;
+
+.quantidade-btn {
+    color:#fff;
+    background-color: red;
+    font-weight: 800;
+    border:0;
+    border-radius: 10px;
+    padding: 4px;
+    width: 50px;
+    font-size: 22px;
+    height: 45px;
 }
-.quantidade-input{
-font-size: 15px;
+
+.quantidade-input {
+    width: 100px;
+    padding: 12px;
+    font-size: 15px;
+    border: black 2px solid;
+   border-radius: 12px;
 }
+
 .pagamento {
     margin-top: 25px;
     display: flex;
