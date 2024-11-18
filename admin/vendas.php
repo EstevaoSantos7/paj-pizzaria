@@ -55,7 +55,7 @@ $result = $conn->query($sql);
 
 
 <body>
-  <?php include '../includes/header.php'; ?>
+ 
   <div class="container">
     <h1>Gerenciar Pedidos</h1>
 

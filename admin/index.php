@@ -11,22 +11,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 // Deletar produto
 if (isset($_GET['remover_id'])) {
   $remover_id = $_GET['remover_id'];
-
-  // 1. Remover todos os registros que referenciam o produto no carrinho
-  $delete_carrinho_sql = "DELETE FROM carrinho WHERE produto_id = ?";
-  $stmt_carrinho = $conn->prepare($delete_carrinho_sql);
-  $stmt_carrinho->bind_param("i", $remover_id);
-  $stmt_carrinho->execute();
-  $stmt_carrinho->close();
-
-  // 2. Remover todos os registros que referenciam o produto na tabela de itens_pedido
-  $delete_itens_pedido_sql = "DELETE FROM itens_pedido WHERE produto_id = ?";
-  $stmt_itens_pedido = $conn->prepare($delete_itens_pedido_sql);
-  $stmt_itens_pedido->bind_param("i", $remover_id);
-  $stmt_itens_pedido->execute();
-  $stmt_itens_pedido->close();
-
-  // 3. Agora, excluir o produto da tabela de produtos
   $delete_sql = "DELETE FROM produtos WHERE id = ?";
   $stmt = $conn->prepare($delete_sql);
   $stmt->bind_param("i", $remover_id);
@@ -45,6 +29,7 @@ $result = $conn->query($sql);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,6 +38,7 @@ $result = $conn->query($sql);
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/header.css">
 </head>
+
 <body>
   <?php include '../includes/header.php'; ?>
   <div class="container">
@@ -74,5 +60,8 @@ $result = $conn->query($sql);
     </div>
   </div>
   <?php include '../includes/footer.php'; ?>
+
 </body>
+
 </html>
+
