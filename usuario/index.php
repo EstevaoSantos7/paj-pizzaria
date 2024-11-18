@@ -34,7 +34,7 @@ $result = $conn->query($sql);
 
       <!-- Início das pizzas dinâmicas -->
       <div class="pizzas">
-        <?php 
+        <?php
         // Loop para exibir todas as pizzas
         while ($produto = $result->fetch_assoc()) : ?>
           <div class="pizza">
@@ -57,7 +57,7 @@ $result = $conn->query($sql);
 
     <!-- Mostrar as pizzas em um formato de listagem geral -->
     <div class="produtos">
-      <?php 
+      <?php
       // Reiniciar o ponteiro do resultado para percorrer novamente
       $result->data_seek(0); // Reseta o ponteiro do resultado
 
@@ -66,7 +66,6 @@ $result = $conn->query($sql);
         <div class="produto">
           <img src="../imgs/produtos/<?php echo $produto['imagem']; ?>" alt="<?php echo $produto['nome']; ?>" style="width: 200px; height: auto;">
           <h3><?php echo $produto['nome']; ?></h3>
-          <p><?php echo $produto['descricao']; ?></p>
           <p>R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
           <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "cliente"): ?>
             <form action="adicionar_ao_carrinho.php" method="POST">

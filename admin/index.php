@@ -11,6 +11,22 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 // Deletar produto
 if (isset($_GET['remover_id'])) {
   $remover_id = $_GET['remover_id'];
+
+  // 1. Remover todos os registros que referenciam o produto no carrinho
+  $delete_carrinho_sql = "DELETE FROM carrinho WHERE produto_id = ?";
+  $stmt_carrinho = $conn->prepare($delete_carrinho_sql);
+  $stmt_carrinho->bind_param("i", $remover_id);
+  $stmt_carrinho->execute();
+  $stmt_carrinho->close();
+
+  // 2. Remover todos os registros que referenciam o produto na tabela de itens_pedido
+  $delete_itens_pedido_sql = "DELETE FROM itens_pedido WHERE produto_id = ?";
+  $stmt_itens_pedido = $conn->prepare($delete_itens_pedido_sql);
+  $stmt_itens_pedido->bind_param("i", $remover_id);
+  $stmt_itens_pedido->execute();
+  $stmt_itens_pedido->close();
+
+  // 3. Agora, excluir o produto da tabela de produtos
   $delete_sql = "DELETE FROM produtos WHERE id = ?";
   $stmt = $conn->prepare($delete_sql);
   $stmt->bind_param("i", $remover_id);
@@ -29,7 +45,6 @@ $result = $conn->query($sql);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +53,6 @@ $result = $conn->query($sql);
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/header.css">
 </head>
-
 <body>
   <?php include '../includes/header.php'; ?>
   <div class="container">
@@ -49,39 +63,16 @@ $result = $conn->query($sql);
         <div class="produto">
           <img src="../imgs/produtos/<?= $produto['imagem']; ?>" alt="<?= $produto['nome']; ?>">
           <h3><?= $produto['nome']; ?></h3>
-          <p>Descrição: <?= $produto['descricao']; ?></p>
           <p>Preço: R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></p>
           <p>Status: <?= ucfirst($produto['status']); ?></p>
 
-<<<<<<< HEAD
           <!-- Botões de edição e remoção para admin -->
           <a href="editar_produto.php?id=<?= $produto['id']; ?>">Editar</a> |
           <a href="index.php?remover_id=<?= $produto['id']; ?>" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
         </div>
       <?php endwhile; ?>
-=======
-        <a href="editar_produto.php?id=1">Editar</a> |
-        <a href="index.php?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
-      </div>
-
-
-      <div class="produto">
-        <img src="../imgs/produtos/exemplo2.jpg" alt="Produto Exemplo 2" style="width: 200px; height: auto;">
-        <h3>Produto Exemplo 2</h3>
-        <p>Descrição: Descrição do produto exemplo 2</p>
-        <p>Preço: R$ 49,90</p>
-        <p>Status: Inativo</p>
-
-
-        <a href="editar_produto.php?id=1">Editar</a> |
-        <a href="index.php?remover_id=1" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</a>
-      </div>
->>>>>>> 302feb7c651b3765d576b05d85667bf95dfd3aba
     </div>
   </div>
   <?php include '../includes/footer.php'; ?>
-
 </body>
-
 </html>
-

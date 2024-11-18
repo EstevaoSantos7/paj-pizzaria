@@ -42,7 +42,6 @@ $produto = $result_produto->fetch_assoc();
 // Lógica para processar a edição do produto
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nome = $_POST['nome'];
-  $descricao = $_POST['descricao'];
   $preco = $_POST['preco'];
   $status = $_POST['status']; // Captura o status do produto
 
@@ -57,17 +56,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Faz o upload da nova imagem
     if (move_uploaded_file($imagem_temp, $imagem_destino)) {
       // Atualiza o produto com a nova imagem e status
-      $sql_update = "UPDATE produtos SET nome = ?, descricao = ?, preco = ?, imagem = ?, status = ? WHERE id = ?";
+      $sql_update = "UPDATE produtos SET nome = ?, preco = ?, imagem = ?, status = ? WHERE id = ?";
       $stmt_update = $conn->prepare($sql_update);
-      $stmt_update->bind_param("ssdssi", $nome, $descricao, $preco, $imagem, $status, $produto_id);
+      $stmt_update->bind_param("ssdssi", $nome, $preco, $imagem, $status, $produto_id);
     } else {
       $erro = "Erro ao fazer o upload da nova imagem.";
     }
   } else {
     // Atualiza o produto sem alterar a imagem, mas com o status
-    $sql_update = "UPDATE produtos SET nome = ?, descricao = ?, preco = ?, status = ? WHERE id = ?";
+    $sql_update = "UPDATE produtos SET nome = ?, preco = ?, status = ? WHERE id = ?";
     $stmt_update = $conn->prepare($sql_update);
-    $stmt_update->bind_param("ssdsi", $nome, $descricao, $preco, $status, $produto_id);
+    $stmt_update->bind_param("ssdsi", $nome,  $preco, $status, $produto_id);
   }
 
 
@@ -99,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <body>
-  <?php include '../includes/header.php'; ?>
+
   <div class="container">
 
 
@@ -113,18 +112,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <div class="pai">
-      <h1 class="titulo">Editar Produto</h1>
+      <h1 class="titulo">EDITAR PRODUTO</h1>
       <!-- Formulário de edição de produto -->
-      <form action="editar_produto.php?id=<?= $produto['id']; ?>" method="POST" enctype="multipart/form-data">
+      <form action="editar_produto.php?id=<?= $produto['id']; ?>" method="POST" enctype="multipart/form-data" class="formulario">
 
         <div class="formulario-editar">
           <label for="nome">Nome do Produto:</label>
           <input type="text" name="nome" id="nome" value="<?= $produto['nome']; ?>" required>
-
-
-          <label for="descricao">Descrição:</label>
-          <textarea name="descricao" id="descricao" required><?= $produto['descricao']; ?></textarea>
-
+          
           <label for="preco">Preço:</label>
           <input type="number" step="0.01" name="preco" id="preco" value="<?= $produto['preco']; ?>" required>
 
@@ -150,22 +145,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="voltar">
         <a href="../admin/index.php" id="voltar">VOLTAR</a>
       </div>
-
-
-      <div class="form-group">
-        <label for="imagem">Imagem do Produto (deixe vazio para manter a atual):</label>
-        <input type="file" name="imagem" id="imagem" accept="image/*">
-        <p>Imagem atual:</p>
-        <img src="../imgs/produtos/<?= $produto['imagem']; ?>" alt="<?= $produto['nome']; ?>" style="width: 150px;">
-      </div>
-
-
-      <input type="submit" value="Atualizar Produto">
-    </form>
   </div>
 
 
-  <?php include '../includes/footer.php'; ?>
+
 
 
 </body>

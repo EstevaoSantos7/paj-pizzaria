@@ -31,6 +31,8 @@ body {
     font-weight: 700;
     margin-top: 25px;
     margin-bottom: 10px;
+    text-align: center;
+    margin: 20px 0px;
 }
 
 .detalhes-produto {
@@ -68,9 +70,18 @@ body {
 }
 
 .container-nome {
+    display: flex;
+    flex-wrap: wrap;
     margin: 12px 0px;
+    flex-direction: column;
+   width: 100px;
 }
 
+.container-nome h3{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
 #remover {
 
     border: 2px solid red;
@@ -81,6 +92,11 @@ body {
     cursor: pointer;
     
 }
+.form-quantidade{
+    border-radius: 21px;
+    border: solid 2px red;
+    padding: 8px;
+}
 
 .quantidade-btn {
     color:#fff;
@@ -88,18 +104,15 @@ body {
     font-weight: 800;
     border:0;
     border-radius: 10px;
-    padding: 4px;
-    width: 50px;
     font-size: 22px;
-    height: 45px;
 }
 
 .quantidade-input {
-    width: 100px;
+    width: 50px;
     padding: 12px;
     font-size: 15px;
-    border: black 2px solid;
-   border-radius: 12px;
+    border: 0;
+   
 }
 
 .pagamento {
