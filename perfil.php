@@ -1,3 +1,39 @@
+<?php
+session_start();
+include './config/conexao.php';
+
+if (!isset($_SESSION['usuario_id'])) {
+  header('Location: ../login.php');
+  exit;
+}
+
+$usuario_id = $_SESSION['usuario_id'];
+$sql = "SELECT * from usuarios where id =?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$usuario = $result->fetch_assoc();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $bairro = $_POST['bairro'];
+  $logradouro = $_POST['logradouro'];
+  $numero = $_POST['numero'];
+  $complemento = $_POST['complemento'];
+  $usuario_id = $_SESSION['usuario_id'];
+
+  // Corrigido: Removida vírgula extra e corrigido erro no prepare
+  $sql = "UPDATE usuarios SET bairro = ?, logradouro = ?, numero = ?, complemento = ? WHERE id = ?";
+  $stmt = $conn->prepare($sql); // Corrigido a sintaxe
+  $stmt->bind_param("ssssi", $bairro, $logradouro, $numero, $complemento, $usuario_id);
+
+  if ($stmt->execute()) {
+    echo "Perfil atualizado com sucesso!";
+  } else {
+    echo "Erro ao atualizar perfil";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -20,25 +56,29 @@
       <img src="/imgs/perfil.jpg" alt="">
       </div>
       <div class="perfil1">
-      <input type="text" name="nome" value="Exemplo Nome" required>
+      <label for="nome">Nome:</label>
+            <input type="name" name="nome" id="nome" value="<?= $usuario['nome'] ?>" required>
 
-    
-      <input type="email" name="email" value="exemplo@email.com" required>
+            <label for="email">Email:</label> 
+
+      <input type=" email" name="email" value="<?= $usuario['email'] ?>" required>
       </div>
       </div>
   
       <div class="endereco">
       <h1 class="titulo">MEU ENDEREÇO</h1>
       <div class="endereco1">
-      <input type="text" name="bairro" id="bairro" value="Exemplo Bairro" required>
-
-      <input type="text" name="logradouro" id="logradouro" value="Exemplo Logradouro" required>
-      </div>
+      <label for="bairro">Bairro:</label>
+            <input type="text" name="bairro" id="bairro" value="<?= $usuario['bairro'] ?>" required>
+      <label for="logradouro">Endereço:</label>
+      <input type="text" name="logradouro" value="<?= $usuario['logradouro'] ?>" required>
+      </div>  
       
       <div class="endereco2">
-      <input type="text" name="numero" id="numero" value="123" required>
-
-      <input type="text" name="complemento" id="complemento" value="Exemplo Complemento">
+     
+      <label for="numero">Número:</label>
+      <input type="number" name="numero" id="numero" value="<?= $usuario['numero'] ?>" required>
+      <label for="complemento">Complemento:</label><input type="text" name="complemento" id="complemento" value="<?= $usuario['complemento'] ?>" required>
       </div>
       </div>
      
