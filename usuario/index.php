@@ -34,13 +34,16 @@ $result = $conn->query($sql);
 
       <!-- Início das pizzas dinâmicas -->
       <div class="pizzas">
-        <?php 
+        <?php
         // Loop para exibir todas as pizzas
         while ($produto = $result->fetch_assoc()) : ?>
           <div class="pizza">
             <div class="descricao-pizza">
               <p class="titulo-pizza"><?php echo $produto['nome']; ?></p>
-              <a href="adicionar_ao_carrinho.php?id=<?php echo $produto['id']; ?>" class="adicionar">ADICIONAR AO CARRINHO</a>
+              <form action="adicionar_ao_carrinho.php" method="POST">
+                <input type="hidden" name="produto_id" value="<?php echo $produto['id']; ?>">
+                <button type="submit" class="adicionar">ADICIONAR AO CARRINHO</button>
+              </form>
               <p class="preco-cima">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
             </div>
             <div class="baixo">
@@ -55,8 +58,6 @@ $result = $conn->query($sql);
       </div>
     </div>
 
-    <!-- Mostrar as pizzas em um formato de listagem geral -->
-    
   </div>
 
 </body>
