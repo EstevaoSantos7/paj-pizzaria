@@ -20,7 +20,7 @@
         <a href="/perfil.php">Perfil</a>
         <?php if($_SESSION['role'] === 'admin'):?>
             <a href="/admin/vendas.php">Gerenciar Pedidos</a>
-            <a href="/admin/adicionar_produtos.php">Adicionar Produtos</a>
+            <a href="/admin/adicionar_produto.php">Adicionar Produtos</a>
         <?php endif; ?>
         <a href="/logout.php">Sair</a>
         <?php else: ?>

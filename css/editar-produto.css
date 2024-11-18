@@ -1,5 +1,6 @@
 body {
     background: url(../imgs/FUNDO-PIZZA.jpg)no-repeat center center/cover;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -12,9 +13,9 @@ body {
     margin-top: 115px;
     margin-bottom: 110px;
     background-color: #ffffff;
-    justify-content:space-around;
-    align-items: center;
+    justify-content:space-between;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
     width: 1200px;
@@ -24,6 +25,7 @@ body {
 }
 
 .titulo {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 36px;
     color: red;
     font-weight: 700;
@@ -36,20 +38,24 @@ form {
     display: flex;
     flex-wrap: wrap;
 }
+
+.formulario{
+display: flex;
+justify-content: space-around;
+flex-direction: row;
+}
+
 .formulario-editar{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 label {
-    margin-top: 12px;
-    margin-left: 10px;
+   margin: 8px 10px;
     font-size: 20px;
     font-weight: 600;
    
- 
-
 }
 
 input {
@@ -61,17 +67,19 @@ input {
 }
 
 
-#descricao {
-    border: 2px solid red;
-    border-radius: 15px;
-   
-}
 #status{ margin-top: 5px;
 padding: 12px;
 border-radius: 18px;
 width: 380px;
 border: 2px solid red;
 }
+
+.imagem-editar{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+}
+
 #imagem {
 
     cursor: pointer;
@@ -84,11 +92,12 @@ border: 2px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #atualizar {
     text-align: center;
-    width: 250px;
+  
     font-weight: 700;
     font-size: 25px;
     color: #ffff;

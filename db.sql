@@ -16,7 +16,6 @@ CREATE TABLE usuarios (
 CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    descricao TEXT NOT NULL,
     preco DECIMAL(10, 2) NOT NULL,
     imagem VARCHAR(255),
     status ENUM('ativo', 'inativo') DEFAULT 'ativo',
@@ -55,15 +54,15 @@ CREATE TABLE itens_pedido (
     FOREIGN KEY (produto_id) REFERENCES produtos(id)
 );
 
-INSERT INTO produtos (nome, descricao, preco, imagem, status) 
-VALUES ('Sorvete de Chocolate', 'Sorvete de chocolate intenso com pedaços de chocolate belga', 13.00, 'chocolate.jpg', 'ativo');
+INSERT INTO produtos (nome, preco, imagem, status) 
+VALUES ('Sorvete de Chocolate',  13.00, 'chocolate.jpg', 'ativo');
 
-INSERT INTO produtos (nome, descricao, preco, imagem, status) 
-VALUES ('Casquinha Crocante', 'Casquinha de sorvete crocante e levemente doce', 3.50, 'casquinha.jpg', 'ativo');
+INSERT INTO produtos (nome, preco, imagem, status) 
+VALUES ('Casquinha Crocante', 3.50, 'casquinha.jpg', 'ativo');
 
-INSERT INTO produtos (nome, descricao, preco, imagem, status) 
-VALUES ('Milkshake de Baunilha', 'Milkshake cremoso de baunilha feito com sorvete artesanal', 15.00, 'milkshake_baunilha.jpg', 'ativo');
+INSERT INTO produtos (nome, preco, imagem, status) 
+VALUES ('Milkshake de Baunilha',  15.00, 'milkshake_baunilha.jpg', 'ativo');
 
-INSERT INTO produtos (nome, descricao, preco, imagem, status) 
-VALUES ('Picolé de Limão', 'Picolé refrescante de limão siciliano', 2.00, 'picole_limao.jpg', 'ativo');
+INSERT INTO produtos (nome, preco, imagem, status) 
+VALUES ('Picolé de Limão', 2.00, 'picole_limao.jpg', 'ativo');
 

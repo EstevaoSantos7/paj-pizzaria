@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pedido_id']) && isset
 
 
 // Obtém todos os pedidos
-$sql = "SELECT p.id, p.usuario_id, p.total, p.status, p.data_pedido, u.nome
+$sql = "SELECT p.id, p.usuario_id, p.total, p.status, p.created_at, u.nome
         FROM pedidos p
         JOIN usuarios u ON p.usuario_id = u.id
-        ORDER BY p.data_pedido DESC";
+        ORDER BY p.created_at DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -55,7 +55,7 @@ $result = $conn->query($sql);
 
 
 <body>
-  <?php include '../includes/header.php'; ?>
+ 
   <div class="container">
     <h1>Gerenciar Pedidos</h1>
 
@@ -74,7 +74,7 @@ $result = $conn->query($sql);
           <div class="pedido-item">
             <div class="pedido-info">
               <h3>Pedido #<?= $pedido['id']; ?> - <?= $pedido['nome']; ?></h3>
-              <p><strong>Data do Pedido:</strong> <?= date('d/m/Y H:i', strtotime($pedido['data_pedido'])); ?></p>
+              <p><strong>Data do Pedido:</strong> <?= date('d/m/Y H:i', strtotime($pedido['created_at'])); ?></p>
               <p><strong>Total:</strong> R$ <?= number_format($pedido['total'], 2, ',', '.'); ?></p>
               <p><strong>Status:</strong> <?= ucfirst($pedido['status']); ?></p>
             </div>
