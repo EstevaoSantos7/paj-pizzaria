@@ -22,11 +22,9 @@ $stmt_verifica->execute();
 $result_verifica = $stmt_verifica->get_result();
 
 if ($result_verifica->num_rows > 0) {
-  // Se o produto já estiver no carrinho, atualiza a quantidade
-  $sql_update = "UPDATE carrinho SET quantidade = quantidade + ? WHERE usuario_id = ? AND produto_id = ?";
-  $stmt_update = $conn->prepare($sql_update);
-  $stmt_update->bind_param("iii", $quantidade, $usuario_id, $produto_id);
-  $stmt_update->execute();
+  // Se o produto já estiver no carrinho, não faz nada, pois queremos apenas 1 unidade de cada
+  // Caso deseje adicionar a quantidade para mais de 1, remova a linha abaixo
+  echo "<script>alert('Este produto já está no carrinho!'); window.location.href = 'index.php';</script>";
 } else {
   // Se o produto não estiver no carrinho, insere um novo item com a quantidade 1
   $sql_insert = "INSERT INTO carrinho (usuario_id, produto_id, quantidade) VALUES (?, ?, ?)";
@@ -38,3 +36,4 @@ if ($result_verifica->num_rows > 0) {
 // Redireciona de volta para a página do carrinho ou página inicial
 header('Location: carrinho.php');
 exit;
+?>
