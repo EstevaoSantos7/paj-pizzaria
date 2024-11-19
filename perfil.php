@@ -94,7 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      
       <div class="botoes">
       <input id="editar" type="submit" value="EDITAR PERFIL">
-      <input id="voltar" type="button" value="VOLTAR">
+      <div class="btn-voltar">
+      <a id="voltar" href="../index.php">VOLTAR</a>
+      </div>
       </div>
     </form>
   </div>

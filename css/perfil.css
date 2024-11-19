@@ -87,19 +87,26 @@ main{
     font-weight: 700;
     cursor: pointer;
 }
-
+.btn-voltar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 #voltar{
-    margin-top: 15px;
-    margin-bottom: 40px;
     background-color: #ffffff;
     color: #ff0000;
     border-radius: 32px;
     border: solid #ff0000 1px;
-    height: 45px;
-    width: 150px;
     font-size: 15px;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
     font-weight: 700;
     cursor: pointer;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .endereco1{
     display: flex;
