@@ -39,7 +39,7 @@ $result = $conn->query($sql);
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/index_adm.css">
-  <link rel="stylesheet" href="../css/index.css">
+  
   <link rel="stylesheet" href="../css/header.css">
 </head>
 
