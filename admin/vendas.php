@@ -112,6 +112,9 @@ $result = $conn->query($sql);
       <p>Nenhum pedido foi encontrado.</p>
     <?php endif; ?>
   </div>
+   <div class="voltar">
+    <a id="btn-voltar" href="../index.php">VOLTAR</a>
+   </div>
 
 
   <?php include '../includes/footer.php'; ?>

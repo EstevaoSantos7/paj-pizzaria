@@ -89,13 +89,13 @@ strong{
 
 }
 .voltar a{
-    background-color: #ff0000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #ff0000;
     border-radius: 32px;
     border: solid #ff0000 1px;
     font-size: 25px;
     font-weight: 600;
-    padding: 18px;
+    padding: 15px;
     padding-right: 75px;
     padding-left: 75px;
     text-decoration: none;
