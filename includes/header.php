@@ -16,7 +16,6 @@
         <?php if($_SESSION['role'] === 'cliente'):?>
             <a href="/usuario/carrinho.php">Carrinho</a>
             <a href="/usuario/compras.php">Meus pedidos</a>
-            <a href="/usuario/pizzas.php">Pizzas</a>
         <?php endif; ?>
         <a href="/perfil.php">Perfil</a>
         <?php if($_SESSION['role'] === 'admin'):?>

@@ -1,0 +1,142 @@
+.container h1{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: red;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+#nenhuma{
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    text-align: center;
+}
+.pedido-item{
+    border: solid rgba(0, 0, 0, 0.5) 4px;
+    border-radius: 20px;
+    width: 24%;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 25px;
+}
+.lista-pedidos{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.container{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.pedido-info{
+    display: flex;
+    flex-direction: column;
+    height: 110%;
+    width: 100%;
+}
+.pedido-titulo{
+    font-size: 24px;
+    margin-left: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.pedido-text{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+strong{
+    font-weight: 700;
+}
+.pedido-detalhes{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 15px;
+}
+.btn-detalhes{
+    background-color: #ffffff;
+    color: #ff0000;
+    border-radius: 32px;
+    border: solid #ff0000 1px;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px;
+    padding-right: 60px;
+    padding-left: 60px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.btn-detalhes:hover{
+    transition: ease-in-out 0.3s;
+    background-color: #ff0000;
+    color: #ffffff;
+}
+.voltar{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 40px;
+
+}
+.voltar a{
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 32px;
+    border: solid #ff0000 1px;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 18px;
+    padding-right: 75px;
+    padding-left: 75px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+form{
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input{
+    font-size: 18px;
+    color: white;
+    background-color: #ff0000;
+    border: solid #ff0000 1px;
+    border-radius: 50px;
+    padding: 10px;
+    padding-right: 25px;
+    padding-left: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+}
+label{
+    font-size: 18px;    
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    margin: 5px;
+}
+select{
+    color: #ff0000;
+    font-size: 16px;    
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    border-radius: 20px;
+    border: solid #ff0000 2px;
+    padding: 5px;
+    margin: 5px;
+}

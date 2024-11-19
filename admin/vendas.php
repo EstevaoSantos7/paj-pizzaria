@@ -48,7 +48,7 @@ $result = $conn->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Pedidos - Fast Food</title>
-  <link rel="stylesheet" href="../css/pedidos.css">
+  <link rel="stylesheet" href="../css/vendas.css">
 
 
 </head>
@@ -73,14 +73,22 @@ $result = $conn->query($sql);
         <?php while ($pedido = $result->fetch_assoc()): ?>
           <div class="pedido-item">
             <div class="pedido-info">
+              <div class="pedido-titulo">
               <h3>Pedido #<?= $pedido['id']; ?> - <?= $pedido['nome']; ?></h3>
+              </div>
+              <div class="pedido-text">
               <p><strong>Data do Pedido:</strong> <?= date('d/m/Y H:i', strtotime($pedido['created_at'])); ?></p>
               <p><strong>Total:</strong> R$ <?= number_format($pedido['total'], 2, ',', '.'); ?></p>
               <p><strong>Status:</strong> <?= ucfirst($pedido['status']); ?></p>
+              </div>
+            
+            <div class="pedido-detalhes">
+            <a href="detalhes-pedido.php?id=<?= $pedido['id']; ?>" class="btn-detalhes">Ver Detalhes</a>
             </div>
             <div class="pedido-acoes">
               <!-- Formulário para atualizar o status do pedido -->
               <form action="pedidos.php" method="POST">
+                <div class="alt-status">
                 <input type="hidden" name="pedido_id" value="<?= $pedido['id']; ?>">
                 <label for="status">Alterar Status:</label>
                 <select name="status" required>
@@ -90,9 +98,12 @@ $result = $conn->query($sql);
                   <option value="entregue" <?= $pedido['status'] == 'entregue' ? 'selected' : ''; ?>>Entregue</option>
                   <option value="cancelado" <?= $pedido['status'] == 'cancelado' ? 'selected' : ''; ?>>Cancelado</option>
                 </select>
+                </div>
+                <div class="submit">
                 <input type="submit" value="Atualizar Status">
+                </div>
               </form>
-              <a href="detalhes-pedido.php?id=<?= $pedido['id']; ?>" class="btn-detalhes">Ver Detalhes</a>
+              </div>
             </div>
           </div>
         <?php endwhile; ?>

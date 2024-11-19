@@ -68,17 +68,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="endereco">
       <h1 class="titulo">MEU ENDEREÇO</h1>
       <div class="endereco1">
+        <div class="space">
       <label for="bairro">Bairro:</label>
             <input type="text" name="bairro" id="bairro" value="<?= $usuario['bairro'] ?>" required>
+            </div>
+            <div class="space">
       <label for="logradouro">Endereço:</label>
       <input type="text" name="logradouro" value="<?= $usuario['logradouro'] ?>" required>
+      </div>
+
       </div>  
       
       <div class="endereco2">
      
+      <div class="space">
       <label for="numero">Número:</label>
       <input type="number" name="numero" id="numero" value="<?= $usuario['numero'] ?>" required>
+      </div>
+      <div class="space">
       <label for="complemento">Complemento:</label><input type="text" name="complemento" id="complemento" value="<?= $usuario['complemento'] ?>" required>
+      </div>  
+
       </div>
       </div>
      
