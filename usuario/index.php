@@ -42,6 +42,9 @@ $result = $conn->query($sql);
               <p class="titulo-pizza"><?php echo $produto['nome']; ?></p>
               <form action="adicionar_ao_carrinho.php" method="POST">
                 <input type="hidden" name="produto_id" value="<?php echo $produto['id']; ?>">
+
+                <input hidden type="number" name="quantidade" value="1" min="1" required>
+
                 <button type="submit" class="adicionar">ADICIONAR AO CARRINHO</button>
               </form>
               <p class="preco-cima">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>

@@ -45,13 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $preco = $_POST['preco'];
   $status = $_POST['status']; // Captura o status do produto
 
-
   // Verifica se o administrador enviou uma nova imagem
   if (!empty($_FILES['imagem']['name'])) {
     $imagem = $_FILES['imagem']['name']; // Nome do arquivo da nova imagem
     $imagem_temp = $_FILES['imagem']['tmp_name']; // Caminho temporário da nova imagem
     $imagem_destino = "../imgs/produtos/" . $imagem;
-
 
     // Faz o upload da nova imagem
     if (move_uploaded_file($imagem_temp, $imagem_destino)) {
@@ -66,13 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Atualiza o produto sem alterar a imagem, mas com o status
     $sql_update = "UPDATE produtos SET nome = ?, preco = ?, status = ? WHERE id = ?";
     $stmt_update = $conn->prepare($sql_update);
-    $stmt_update->bind_param("ssdsi", $nome,  $preco, $status, $produto_id);
+    $stmt_update->bind_param("sssi", $nome,  $preco, $status, $produto_id);
   }
-
 
   // Executa a atualização no banco de dados
   if ($stmt_update->execute()) {
     $msg = "Produto atualizado com sucesso!";
+    
+    // Redireciona para a página do produto para atualizar os dados
+    header("Location: editar_produto.php?id=" . $produto_id);
+    exit();
   } else {
     $erro = "Erro ao atualizar o produto.";
   }
@@ -93,37 +94,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
 
-
 </head>
-
 
 <body>
 
   <div class="container">
 
-
-
-    <!-- Exibe mensagens de sucesso ou erro -->
-    <?php if (isset($msg)): ?>
-      <p style="color: green;"><?= $msg; ?></p>
-    <?php elseif (isset($erro)): ?>
-      <p style="color: red;"><?= $erro; ?></p>
-    <?php endif; ?>
-
-
     <div class="pai">
-      <h1 class="titulo">EDITAR PRODUTO</h1>
+      <h1 class="titulo">Editar Produto</h1>
       <!-- Formulário de edição de produto -->
       <form action="editar_produto.php?id=<?= $produto['id']; ?>" method="POST" enctype="multipart/form-data" class="formulario">
 
         <div class="formulario-editar">
-          <label for="nome">Nome do Produto:</label>
+          <div class="campo">
+            <label for="nome">Nome do Produto:</label>
+          </div>
           <input type="text" name="nome" id="nome" value="<?= $produto['nome']; ?>" required>
-          
+
+
           <label for="preco">Preço:</label>
+
           <input type="number" step="0.01" name="preco" id="preco" value="<?= $produto['preco']; ?>" required>
 
-          <label for="status">Status do Produto:</label>
+          <div class="campo">
+            <label for="status">Status do Produto:</label>
+          </div>
           <select name="status" id="status" required>
             <option value="ativo" <?= $produto['status'] == 'ativo' ? 'selected' : ''; ?>>Ativo</option>
             <option value="inativo" <?= $produto['status'] == 'inativo' ? 'selected' : ''; ?>>Inativo</option>
@@ -131,21 +126,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
 
-        <div class="imagem-editar">
-          <label for="imagem">Imagem do Produto (deixe vazio para manter a atual):</label>
+        <div class="imagem-editar"> 
+          <div class="campo-image">
+            <label for="imagem">Imagem do Produto (deixe vazio para manter a atual):</label>
+          </div>
           <input type="file" name="imagem" id="imagem" accept="image/*">
-          <p>Imagem atual:</p>
-          <img src="../imgs/produtos/<?= $produto['imagem']; ?>" alt="<?= $produto['nome']; ?>" style="width: 150px;">
+          <p id="titulo-img" class="campo">Imagem atual:</p>
+          <img class="img_atual" src="../imgs/produtos/<?= $produto['imagem']; ?>" alt="<?= $produto['nome']; ?>">
         </div>
 
-        <div class="atualizar">
-          <input type="submit" value="Atualizar Produto" id="atualizar">
+        <div class="confirmar">
+          <div class="mensagem">
+            <!-- Exibe mensagens de sucesso ou erro -->
+            <?php if (isset($msg)): ?>
+              <p style="color: green;"><?= $msg; ?></p>
+            <?php elseif (isset($erro)): ?>
+              <p style="color: red;"><?= $erro; ?></p>
+            <?php endif; ?>
+          </div>
+          <div class="atualizar">
+            <input type="submit" value="Atualizar Produto" id="atualizar">
+          </div>
         </div>
       </form>
       <div class="voltar">
         <a href="../admin/index.php" id="voltar">VOLTAR</a>
       </div>
-  </div>
+    </div>
 
 
 

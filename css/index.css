@@ -64,6 +64,7 @@ body {
 .adicionar {
     text-decoration: none;
     background-color: red;
+    border: 0;
     color: #ffff;
     font-size: 22px;
     font-weight: 600;
