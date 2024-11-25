@@ -2,13 +2,11 @@
 session_start();
 include '../config/conexao.php';
 
-
 // Verifica se o usuário é admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
   header('Location: ../login.php');
   exit;
 }
-
 
 // Verifica se o ID do produto foi passado via URL
 if (!isset($_GET['id'])) {
@@ -17,9 +15,7 @@ if (!isset($_GET['id'])) {
   exit;
 }
 
-
 $produto_id = $_GET['id'];
-
 
 // Obtém os dados do produto existente para exibir no formulário
 $sql_produto = "SELECT * FROM produtos WHERE id = ?";
@@ -28,16 +24,13 @@ $stmt_produto->bind_param("i", $produto_id);
 $stmt_produto->execute();
 $result_produto = $stmt_produto->get_result();
 
-
 if ($result_produto->num_rows == 0) {
   echo "<p>Produto não encontrado.</p>";
   include '../includes/footer.php';
   exit;
 }
 
-
 $produto = $result_produto->fetch_assoc();
-
 
 // Lógica para processar a edição do produto
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -56,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // Atualiza o produto com a nova imagem e status
       $sql_update = "UPDATE produtos SET nome = ?, preco = ?, imagem = ?, status = ? WHERE id = ?";
       $stmt_update = $conn->prepare($sql_update);
-      $stmt_update->bind_param("ssdssi", $nome, $preco, $imagem, $status, $produto_id);
+      // Bind dos parâmetros (5 parâmetros: nome, preco, imagem, status, produto_id)
+      $stmt_update->bind_param("sdssi", $nome, $preco, $imagem, $status, $produto_id);
     } else {
       $erro = "Erro ao fazer o upload da nova imagem.";
     }
@@ -64,13 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Atualiza o produto sem alterar a imagem, mas com o status
     $sql_update = "UPDATE produtos SET nome = ?, preco = ?, status = ? WHERE id = ?";
     $stmt_update = $conn->prepare($sql_update);
-    $stmt_update->bind_param("sssi", $nome,  $preco, $status, $produto_id);
+    // Bind dos parâmetros (4 parâmetros: nome, preco, status, produto_id)
+    $stmt_update->bind_param("sssi", $nome, $preco, $status, $produto_id);
   }
 
   // Executa a atualização no banco de dados
-  if ($stmt_update->execute()) {
+  if (isset($stmt_update) && $stmt_update->execute()) {
     $msg = "Produto atualizado com sucesso!";
-    
+
     // Redireciona para a página do produto para atualizar os dados
     header("Location: editar_produto.php?id=" . $produto_id);
     exit();
@@ -80,10 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 
 <head>
   <meta charset="UTF-8">
@@ -93,27 +86,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="../css/editar-produto.css">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
-
 </head>
 
 <body>
 
   <div class="container">
-
     <div class="pai">
       <h1 class="titulo">Editar Produto</h1>
       <!-- Formulário de edição de produto -->
       <form action="editar_produto.php?id=<?= $produto['id']; ?>" method="POST" enctype="multipart/form-data" class="formulario">
-
         <div class="formulario-editar">
           <div class="campo">
             <label for="nome">Nome do Produto:</label>
           </div>
           <input type="text" name="nome" id="nome" value="<?= $produto['nome']; ?>" required>
 
-
           <label for="preco">Preço:</label>
-
           <input type="number" step="0.01" name="preco" id="preco" value="<?= $produto['preco']; ?>" required>
 
           <div class="campo">
@@ -125,8 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </select>
         </div>
 
-
-        <div class="imagem-editar"> 
+        <div class="imagem-editar">
           <div class="campo-image">
             <label for="imagem">Imagem do Produto (deixe vazio para manter a atual):</label>
           </div>
@@ -153,12 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="../admin/index.php" id="voltar">VOLTAR</a>
       </div>
     </div>
-
-
-
-
-
 </body>
-
 
 </html>

@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+
+}
+
+.titulo h1 {
+    font-size: 41px;
+}
+
+.item-pedido {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-usuario {
+    margin: 10px 0px;
+    font-size: 22px;
+
+
+}
+
+.back {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-back {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.detalhes {
+    padding: 12px;
+    width: 296px;
+    background-color: #ECECEC;
+    margin: 2px;
+}
+
+.nome-pizza {
+    margin: 12px 0px;
+    text-align: start;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+#preco {
+    color: red;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.piza {
+    width: 260px;
+    height: auto;
+    border-radius: 21px;
+    transition: opacity 0.3s ease;
+}
+
+.total {
+    margin: 10px 0px;
+}
+
+#total {
+    color: red;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.endereco {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.entrega {
+    font-size: 28px;
+    color: red;
+    font-weight: 500;
+    margin: 10px 0px;
+}
+
+.detalhes-entrega {
+    font-size: 20px;
+
+}
+
+.detalhes-entrega p {
+    margin: 6px 0px;
+}
+.voltar{
+    width: 380px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#volta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 170px;
+    height: 25px;
+    font-weight: 600;
+    font-size: 20px;
+    color: red;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #ffff;
+    border-radius: 32px;
+    margin: 18px 0px;
+    border: solid 2px red;
+}

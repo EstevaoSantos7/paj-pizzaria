@@ -61,7 +61,7 @@ if ($result === false) {
               </div>
             
             <div class="compra-detalhes">
-              <a id="ver-detalhes" href="detalhes-pedido.php?id=<?= htmlspecialchars($pedido['id'], ENT_QUOTES, 'UTF-8'); ?>" class="btn-detalhes">Ver Mais</a>
+              <a id="ver-detalhes" href="detalhes_pedido.php?id=<?= htmlspecialchars($pedido['id'], ENT_QUOTES, 'UTF-8'); ?>" class="btn-detalhes">Ver Mais</a>
             </div>
             </div>
           </div>

@@ -83,11 +83,11 @@ $result = $conn->query($sql);
               </div>
             
             <div class="pedido-detalhes">
-            <a href="detalhes-pedido.php?id=<?= $pedido['id']; ?>" class="btn-detalhes">Ver Detalhes</a>
+            <a href="detalhes_venda.php?id=<?= $pedido['id']; ?>" class="btn-detalhes">Ver Detalhes</a>
             </div>
             <div class="pedido-acoes">
               <!-- Formulário para atualizar o status do pedido -->
-              <form action="pedidos.php" method="POST">
+              <form action="vendas.php" method="POST">
                 <div class="alt-status">
                 <input type="hidden" name="pedido_id" value="<?= $pedido['id']; ?>">
                 <label for="status">Alterar Status:</label>
